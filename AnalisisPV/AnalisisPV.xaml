@@ -1,0 +1,138 @@
+﻿<Window x:Class="SiasoftAppExt.AnalisisPV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SiasoftAppExt"
+             xmlns:SiaSf="http://schemas.syncfusion.com/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style TargetType="SiaSf:GridHeaderCellControl" x:Key="headerStyle">
+            <Setter Property="Background" Value="#3498db"/>
+            <Setter Property="Background" Value="#3498db"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+    </Window.Resources>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"  BorderBrush="Silver" BorderThickness="1,1,1,1" Margin="2">
+            <Grid Background="black" x:Name="GridConfiguracion">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"  FontSize="12" Foreground="White" HorizontalAlignment="right" Text="Fecha Inicial: " VerticalAlignment="Center"></TextBlock>
+                    <DatePicker Name="FecIni"   HorizontalAlignment="Left" Text="{Binding CabSource.FechaIni}" VerticalAlignment="Center" Width="100" Height="25" Grid.Column="1"  Margin="2"  FontSize="12"/>
+                    <TextBlock Grid.Column="2"  FontSize="12" Foreground="White" HorizontalAlignment="right" Text="Fecha Final: " VerticalAlignment="Center"></TextBlock>
+                    <DatePicker Name="FecFin"   HorizontalAlignment="Left" Text="{Binding CabSource.FechaFin}" VerticalAlignment="Center" Width="100" Height="25" Grid.Column="3" Margin="2"  FontSize="12"/>
+
+
+                    <TextBlock  Grid.Column="4" Grid.Row="5" FontSize="12"  HorizontalAlignment="right" Foreground="White" VerticalAlignment="Center" Text="Codigo : "></TextBlock>
+                    <TextBlock x:Name="TextBoxTerCod"  Grid.Column="5"  Width="100" Margin="3"  Foreground="white" FontSize="12"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                
+                    <TextBlock  Grid.Column="6" FontSize="12"  HorizontalAlignment="right" Foreground="White" VerticalAlignment="Center" Text="Cliente : "></TextBlock>
+                    <TextBlock x:Name="TextBoxTerI"  Grid.Column="7" Grid.ColumnSpan="3" Width="300" Margin="3"  Foreground="white" FontSize="12"  HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+
+                    <Button Padding="5" Foreground="white" Background="DodgerBlue" Grid.Column="9" Name="BtnEjecutar" Width="115"  HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=BtnEjecutar}" Click="ButtonRefresh_Click" Cursor="Hand" BorderBrush="{x:Null}">Consultar</Button>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1"  BorderBrush="Silver" BorderThickness="1,1,1,1" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Analisis de Ventas por Productos" Foreground="#c0392b" FontSize="14"/>
+                    <Button Content="Exportar Xls" Width="100"  HorizontalAlignment="Right" Background="black" Foreground="White" Cursor="Hand" Click="ExportaXLS_Click" Tag="1"/>
+
+                    <SiaSf:SfDataGrid  Grid.Row="1" x:Name="VentasPorProducto"  EnableDataVirtualization = "True" AutoGenerateColumns="False" ShowGroupDropArea="True" FontSize="10" AllowFiltering="True" HeaderStyle="{StaticResource headerStyle}" >
+                        <SiaSf:SfDataGrid.Columns>
+                            <SiaSf:GridTextColumn HeaderText="Tipo" MappingName="cod_trn" Width="60" />
+                            <SiaSf:GridTextColumn HeaderText="Numero" MappingName="num_trn" Width="150" />
+                            <SiaSf:GridTextColumn HeaderText="Fecha" MappingName="fec_trn" Width="140" />
+                            <SiaSf:GridTextColumn HeaderText="Linea" MappingName="nom_tip" Width="140" />
+                            <SiaSf:GridTextColumn HeaderText="Grupo" MappingName="nom_gru" Width="140" />
+                            <SiaSf:GridTextColumn HeaderText="Cod_Ref" MappingName="cod_ref" Width="140" />
+                            <SiaSf:GridTextColumn HeaderText="Referencia" MappingName="nom_ref" Width="350" />
+                            <SiaSf:GridTextColumn HeaderText="Bodega" MappingName="nom_bod" Width="80" />
+                            <SiaSf:GridTextColumn HeaderText="Vendedor" MappingName="nom_mer" Width="170" />
+                            <SiaSf:GridTextColumn HeaderText="cod_fpag" MappingName="cod_fpag" Width="80" />
+                            
+                            <SiaSf:GridTextColumn DisplayBinding="{Binding Path=val_uni, StringFormat='{}{0:c}'}" Width="90" HeaderText="SubTotal" TextAlignment="Right" />
+                            <SiaSf:GridTextColumn DisplayBinding="{Binding Path=subtotal, StringFormat='{}{0:c}'}" Width="90" HeaderText="SubTotal" TextAlignment="Right" />
+                            <SiaSf:GridTextColumn DisplayBinding="{Binding Path=val_des, StringFormat='{}{0:c}'}" Width="90" HeaderText="Valor Dcto" TextAlignment="Right" />
+                            <SiaSf:GridTextColumn DisplayBinding="{Binding Path=val_iva, StringFormat='{}{0:c}'}" Width="90" HeaderText="Valor Iva" TextAlignment="Right" />
+                            <SiaSf:GridTextColumn DisplayBinding="{Binding Path=tot_tot, StringFormat='{}{0:c}'}" Width="90" HeaderText="Valor Total" TextAlignment="Right" />
+                            
+                    </SiaSf:SfDataGrid.Columns>
+
+                        <SiaSf:SfDataGrid.GroupSummaryRows>
+                            <SiaSf:GridSummaryRow ShowSummaryInRow="False">
+                                <SiaSf:GridSummaryRow.SummaryColumns>
+                                    <SiaSf:GridSummaryColumn Name="SubTotal" Format="'{Sum:c}'" MappingName="subtotal" SummaryType="DoubleAggregate" />
+                                    <SiaSf:GridSummaryColumn Name="Valor Dcto" Format="'{Sum:c}'" MappingName="val_des" SummaryType="DoubleAggregate" />
+                                    <SiaSf:GridSummaryColumn Name="Costo" Format="'{Sum:c}'" MappingName="costo" SummaryType="DoubleAggregate" />
+                                </SiaSf:GridSummaryRow.SummaryColumns>
+                            </SiaSf:GridSummaryRow>
+                            <SiaSf:GridSummaryRow Title="Total Sales in Year for {ProductCount} Products : {YearSales}" ShowSummaryInRow="True">
+                                <SiaSf:GridSummaryRow.SummaryColumns>
+                                    <SiaSf:GridSummaryColumn Name="YearSales" Format="'{Sum:c}'" MappingName="subtotal" SummaryType="DoubleAggregate" />
+                                    <SiaSf:GridSummaryColumn Name="ProductCount" Format="'{Count:d}'" MappingName="Name" SummaryType="CountAggregate" />
+                                </SiaSf:GridSummaryRow.SummaryColumns>
+                            </SiaSf:GridSummaryRow>
+                        </SiaSf:SfDataGrid.GroupSummaryRows>
+
+                    </SiaSf:SfDataGrid>
+                </Grid>
+
+            </Border>
+
+            <Border Grid.Row="2"  BorderBrush="Silver" BorderThickness="1,1,1,1" Margin="5">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="90"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Subtotal: "  Grid.Column="0" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="black" />
+                    <TextBlock x:Name="TextSubtotal"  Text="{Binding StringFormat=c}" Grid.Column="1" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#c0392b" />
+                    <TextBlock Text="Descuento: "  Grid.Column="2" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" />
+                    <TextBlock x:Name="TextDescuento" Grid.Column="3" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#c0392b" />
+                    <TextBlock Text="Iva: "  Grid.Column="4" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" />
+                    <TextBlock x:Name="TextIva" Grid.Column="5" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#c0392b" />
+                    <TextBlock Text="Total: "  Grid.Column="6" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" />
+                    <TextBlock x:Name="TextTotal" Grid.Column="7" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#c0392b" />
+                </Grid>
+            </Border>
+
+        </Grid>
+    
+    
+</Window>
