@@ -8,8 +8,8 @@
              sf:SkinStorage.VisualStyle="Metro"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1500">
-    <Grid Background="White">
-        <!--#363434-->
+    <Grid Background="#363434">
+        <!---->
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="100*"/>
@@ -71,7 +71,7 @@
                     <sf:SfAccordionItem Header="Iconografia"/>
                 </sf:SfAccordion>
             </Grid>
-            <Grid Margin="5" Grid.Column="1" Name="Panel" Background="#363434">
+            <Grid Margin="5" Grid.Column="1" Name="Panel" Background="#5c5757">
                 <StackPanel/>
             </Grid>
         </Grid>
