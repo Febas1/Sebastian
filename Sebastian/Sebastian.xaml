@@ -8,7 +8,8 @@
              sf:SkinStorage.VisualStyle="Metro"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1500">
-    <Grid Background="#363434">
+    <Grid Background="White">
+        <!--#363434-->
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="100*"/>
