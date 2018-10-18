@@ -70,7 +70,7 @@
                     <sf:SfAccordionItem Header="Iconografia"/>
                 </sf:SfAccordion>
             </Grid>
-            <Grid Margin="5" Grid.Column="1" Name="Panel" Background="">
+            <Grid Margin="5" Grid.Column="1" Name="Panel" Background="#363434">
                 <StackPanel/>
             </Grid>
         </Grid>
