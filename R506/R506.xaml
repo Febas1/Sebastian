@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SiasoftAppExt.R506"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SiasoftAppExt"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:skinManager="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Background="Red" skinManager:SfSkinManager.VisualStyle="Metro">
+    
+    <UserControl.Resources>
+        <Style TargetType="syncfusion:GridHeaderCellControl" x:Key="headerStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#2c3e50"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,-2,0,2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            
+            <TextBlock Grid.Column="0" Text="Fecha inicio:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 2 0"/>
+            <DatePicker  Name="FecIni" Grid.Column="1" VerticalAlignment="Center"  Margin="5 0 10 0 "/>
+            
+            
+            <TextBlock Grid.Column="2" Text="Fecha Fin:"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 2 0"/>
+            <DatePicker Name="FecFin"  Grid.Column="3" VerticalAlignment="Center"  Margin="5,8,0,8" HorizontalAlignment="Left"/>
+
+
+            <Button Grid.Column="6" Margin="5" Click="Button_Click" Cursor="Hand" Background="#3498db" BorderBrush="{x:Null}">Consultar</Button>
+            <Button Grid.Column="7" Margin="5" Click="ExportaXLS_Click" Cursor="Hand" Background="#3498db" BorderBrush="{x:Null}">Excel</Button>
+            
+
+        </Grid>
+
+
+        <syncfusion:SfDataGrid Grid.Row="1" ColumnSizer="Auto" FrozenColumnCount="1" ShowGroupDropArea="True"  AllowFiltering="True"   AllowResizingColumns="True" x:Name="GridKardex"  EnableDataVirtualization = "True" AutoGenerateColumns="False" FontSize="12"  HeaderStyle="{StaticResource headerStyle}" Margin="10" >
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="nom_cli" MappingName="nom_cli" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="año" MappingName="año" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="periodo" MappingName="periodo" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="num_trn" MappingName="num_trn" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="nombre_trn" MappingName="nombre_trn" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="fec_TRN" MappingName="fec_TRN" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="color" MappingName="color" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="sexo" MappingName="sexo" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="desc_tall" MappingName="desc_tall" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="grupo" MappingName="grupo" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="cod_ref" MappingName="cod_ref" TextAlignment="Left" x:Name="cod_ref"/>
+                <syncfusion:GridTextColumn HeaderText="nom_ref" MappingName="nom_ref" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="serial" MappingName="serial" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="fec_crea" MappingName="fec_crea" Width="70" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="cod_tip" MappingName="cod_tip" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="marca" MappingName="marca" TextAlignment="Right"/>
+                <syncfusion:GridTextColumn HeaderText="vendedor" MappingName="vendedor" TextAlignment="Right"/>
+                <syncfusion:GridTextColumn HeaderText="nom_bod" MappingName="nom_bod" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="cod_bod" MappingName="cod_bod" TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="cantidad" MappingName="cantidad" TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="precio_unit" MappingName="precio_unit" TextAlignment="Left" />
+                <syncfusion:GridNumericColumn HeaderText="can_dev" MappingName="can_dev" NumberDecimalDigits="0"  x:Name="cantidad1"/>
+                <syncfusion:GridNumericColumn HeaderText="cant_neta" MappingName="cant_neta" NumberDecimalDigits="0" x:Name="cantidad2"/>
+                <syncfusion:GridTextColumn HeaderText="subtotal" MappingName="subtotal" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="val_des" MappingName="val_des" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="por_desc" MappingName="por_desc" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="val_iva" MappingName="val_iva" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="vlor_paga" MappingName="vlor_paga" TextAlignment="Left" />
+                <syncfusion:GridTextColumn HeaderText="cod_cliente" MappingName="cod_cliente" TextAlignment="Left" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+
+    </Grid>
+</UserControl>
