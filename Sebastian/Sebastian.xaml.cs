@@ -58,13 +58,15 @@ namespace SiasoftAppExt
 
         private void Efecto_Click(object sender, RoutedEventArgs e)
         {
+            Panel.Children.Clear();
+            Panel.Children.Add(new Grides());
         }
         private void Color_Click(object sender, RoutedEventArgs e)
         {
             Panel.Children.Clear();
             Panel.Children.Add(new Colores());
         }
-        private void ses_Click(object sender, RoutedEventArgs e)
+        private void Ses_Click(object sender, RoutedEventArgs e)
         {
         
             if (accordion.Visibility == Visibility.Visible)
@@ -82,5 +84,6 @@ namespace SiasoftAppExt
             Panel.Children.Clear();
             Panel.Children.Add(new Textbox());
         }
+        
     }
 }

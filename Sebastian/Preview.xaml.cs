@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Sebastian
 {
     /// <summary>
-    /// Lógica de interacción para Grid.xaml
+    /// Lógica de interacción para Preview.xaml
     /// </summary>
-    public partial class Grid : UserControl
+    public partial class Preview : UserControl
     {
-        public Grid()
+        public Preview()
         {
             InitializeComponent();
         }

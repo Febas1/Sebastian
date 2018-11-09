@@ -9,7 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1500">
     <Grid Background="#363434">
-        <!---->
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="100*"/>
@@ -19,7 +18,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Background="#363434" Grid.Column="0" BorderThickness="0" Margin="10,1,1,1" HorizontalAlignment="Left"  Click="ses_Click" VerticalAlignment="Center">
+            <Button Background="#363434" Grid.Column="0" BorderThickness="0" Margin="10,1,1,1" HorizontalAlignment="Left"  Click="Ses_Click" VerticalAlignment="Center">
                 <StackPanel>
                     <Image Source="Imagenes/menu.png" Height="30" Width="30" Cursor="Hand"/>
                 </StackPanel>

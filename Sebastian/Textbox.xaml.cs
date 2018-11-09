@@ -13,59 +13,106 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Syncfusion.Windows.Tools.Controls;
+using Syncfusion.Windows.Tools;
+using Syncfusion.Windows.Controls.Input;
 
 namespace Sebastian
 {
-    /// <summary>
-    /// Lógica de interacción para Controles.xaml
-    /// </summary>
     public partial class Textbox : UserControl
     {
         public Textbox()
         {
             InitializeComponent();
         }
-
-        private void Cambio_Click(object sender, RoutedEventArgs e)
+        private bool handle = true;
+       
+        private void Eleccion_DropDownClosed(object sender, EventArgs e)
         {
-            double cambio = 0;
-            try
-            {
-                if (Convert.ToDouble(ValueD.Text) != 0)
-                {
-                cambio = Convert.ToDouble(ValueD.Text);
-                DoubleBox.Value = cambio;
-                }
-                else
-                {
-                    MessageBox.Show("Digite unicamente numeros con punto");
-                }
+            if (handle) Handle();
+            handle = true;
         }
-            catch (Exception ses)
-            {
-                MessageBox.Show("Error en : "+ses);
-            }
-
-        }
-    
-
-        private void Null_Click(object sender, RoutedEventArgs e)
+        private void Eleccion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Boolean bul = true;
-            Boolean bel = false;
-            DoubleTextBox textBox = new DoubleTextBox();
-            if (DoubleBox.UseNullOption == false)
+            ComboBox cmb = sender as ComboBox;
+            handle = !cmb.IsDropDownOpen;
+            Handle();
+        }
+        private void Handle()
+        {
+            switch (EleccionCMB.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last())
             {
-                DoubleBox.UseNullOption = textBox.UseNullOption = bul;
-                if (Convert.ToDouble(DoubleBox.Text) == 00.0)
-                {
-                    DoubleBox.Text = "";
-                }
+                case "TextBoxExt":
+                    TextBoxExt_func();
+                    break;
+                case "CurrencyTextBox":
+                    break;
+                case "DoubleTextBox":
+                    break;
+                case "IntegerTextBox":
+                    break;
+                case "PercentTextBox":
+                    break;
+                case "AutoComplete":
+                    AutoComplete_func();
+                    break;
             }
-            else
-            {
-                DoubleBox.UseNullOption = textBox.UseNullOption = bel;
-            }
+        }
+        private void TextBoxExt_func()
+        {
+            TXTSpace.Children.Clear();
+            SfTextBoxExt textBox = new SfTextBoxExt();
+            textBox.VerticalAlignment = VerticalAlignment.Center;
+            textBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+            textBox.Margin = new Thickness(5);
+            textBox.Watermark = "Esta es una prueba de la marca de agua de este control";
+            TXTSpace.Children.Add(textBox);
+
+        }
+        private void CurrencyTextBox_func()
+        {
+
+        }
+        private void DoubleTextBox_func()
+        {
+
+        }
+        private void IntegerTextBox_func()
+        {
+
+        }
+        private void PercentTextBox_func()
+        {
+
+        }
+        private void AutoComplete_func()
+        {
+            TXTSpace.Children.Clear();
+            AutoComplete AutoComplete1 = new AutoComplete();
+            List<String> productSource = new List<String>();
+            productSource.Add("WPF");
+            productSource.Add("Chart");
+            productSource.Add("GridView");
+            productSource.Add("WF");
+            productSource.Add("Xlsio");
+            productSource.Add("Business Intelligence");
+            productSource.Add("Tools");
+            productSource.Add("Silverlight");
+            productSource.Add("Schedule");
+            productSource.Add("Mvc");
+            productSource.Add("Pdf");
+
+
+            AutoComplete1.CustomSource = productSource;
+            AutoComplete1.SelectionMode = SelectionMode.Single;
+            AutoComplete1.IsAutoAppend = true;
+            AutoComplete1.IsFilter = true;
+            AutoComplete1.StringMode = StringMode.AnyChar;
+            AutoComplete1.Margin = new Thickness(5, 5, 5, 5);
+            AutoComplete1.VerticalAlignment = VerticalAlignment.Center;
+            AutoComplete1.HorizontalAlignment = HorizontalAlignment.Stretch;
+                
+            TXTSpace.Children.Add(AutoComplete1);
         }
     }
 }
